@@ -47,6 +47,8 @@ int main(int argc, char **argv) {
     // Creating subscriber and publisher
     ros::Subscriber sub = n.subscribe("/direction",
         1, &turtlebot::dir_sub, &bot);
+    ros::Subscriber sub2 = n.subscribe("/mode",
+        1, &turtlebot::mode_sub, &bot);
     ros::Publisher pub = n.advertise<geometry_msgs::Twist>
         ("/cmd_vel", 10);
     ros::Rate rate(10);
