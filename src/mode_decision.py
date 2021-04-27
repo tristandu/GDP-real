@@ -17,7 +17,7 @@ class ModeDecision():
 	self.obstacle=False
 	self.node=False
 
-	loop_rate = rospy.Rate(3) # 10hz
+	loop_rate = rospy.Rate(5) # 10hz
         while not rospy.is_shutdown():
             self.fnFunction()
             loop_rate.sleep()
@@ -32,16 +32,16 @@ class ModeDecision():
 	
 
 	height, width = mask.shape[:2]
-	if cv2.countNonZero(mask)>0.3*height*width:     #if more than 30% of the pixels are blue, it is a node
+	if cv2.countNonZero(mask)>0.2*height*width:     #if more than 20% of the pixels are blue, it is a node
 	    self.node=True
 	else:
 	    self.node=False
 
 
     def cbScan(self,msg):
-	thr1=0.5
+	thr1=0.8
 	
-	if msg.ranges[0]<thr1 and msg.ranges[0]!=0.0:
+	if (msg.ranges[0]<thr1 and msg.ranges[0]!=0.0) or (msg.ranges[15]<thr1 and msg.ranges[15]!=0.0) or (msg.ranges[15]<thr1 and msg.ranges[15]!=0.0):
 
 	    self.obstacle=True
 	else:
