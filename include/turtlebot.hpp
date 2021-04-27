@@ -24,6 +24,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #pragma once
 #include <geometry_msgs/Twist.h>
+#include <std_msgs/Int32.h>
 #include <vector>
 #include "ros/ros.h"
 #include "line_follower_turtlebot/pos.h"
@@ -35,12 +36,15 @@ class turtlebot {
  public:
     double dir;  /// Direction message to read published directions
     double last_dir; /// last direction message, used for the derivative part of PD
+    int mode; /// whether we are in lane following mode or not
 /**
 *@brief Callback used to subscribe to the direction message published by the Line detection node
 *@param msg is the custom message pos which publishes a direction int between 0 and 3
 *@return none
 */
     void dir_sub(line_follower_turtlebot::pos msg);
+ 
+    void mode_sub(std_msgs::Int32 msg);
 /**
 *@brief Function to publish velocity commands based on direction
 *@param velocity is the twist 
