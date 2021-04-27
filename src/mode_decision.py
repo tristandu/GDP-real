@@ -26,8 +26,8 @@ class ModeDecision():
     def cbImage(self,msg):
         image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
         hsv = cv2.cvtColor(image,cv2.COLOR_BGR2HSV)
-        lower_blue = numpy.array([110,100,100])		#Hue of blue is 240 degree, we divide by 2 to normalize for OpenCV
-	upper_blue = numpy.array([130,255,255])
+        lower_blue = numpy.array([90,100,100])		#Hue of blue is 240 degree, we divide by 2 to normalize for OpenCV
+	upper_blue = numpy.array([150,255,255])
         mask = cv2.inRange(hsv,lower_blue,upper_blue)
 	
 
@@ -41,19 +41,18 @@ class ModeDecision():
     def cbScan(self,msg):
 	thr1=0.5
 	
-	average=numpy.mean([msg.ranges[i] for i in range(160,200)  if msg.intensities[i]!=0.0])
+	if msg.ranges[0]<thr1 and msg.ranges[0]!=0.0:
 
-        if average>thr1 :
-	    self.obstacle=False
-	else:
 	    self.obstacle=True
+	else:
+	    self.obstacle=False
 
     def fnFunction(self):
 	
 	mode = Int32()
 
 	if self.obstacle:
-	    mode.data=3
+	    mode.data=2
 	
 	elif self.node:
 	    mode.data=1
@@ -70,7 +69,7 @@ class ModeDecision():
 
 
 if __name__ == '__main__':
-    rospy.init_node('Mode Decisioner')
+    rospy.init_node('mode_decision')
     node = ModeDecision()
     node.main()
 
