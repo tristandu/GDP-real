@@ -45,7 +45,7 @@ void turtlebot::vel_cmd(geometry_msgs::Twist &velocity,
  ros::Publisher &pub, ros::Rate &rate) {
    if (turtlebot::mode != 0) {
         turtlebot::last_dir =0;
-	#do not publish in this case
+	// do not publish anything
         rate.sleep();
         ROS_INFO_STREAM("Tracking disabled");
 	
