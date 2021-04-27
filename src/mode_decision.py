@@ -41,7 +41,7 @@ class ModeDecision():
     def cbScan(self,msg):
 	thr1=0.8
 	
-	if (msg.ranges[0]<thr1 and msg.ranges[0]!=0.0) or (msg.ranges[15]<thr1 and msg.ranges[15]!=0.0) or (msg.ranges[15]<thr1 and msg.ranges[15]!=0.0):
+	if (msg.ranges[0]<thr1 and msg.ranges[0]!=0.0) or (msg.ranges[15]<thr1 and msg.ranges[15]!=0.0) or (msg.ranges[345]<thr1 and msg.ranges[345]!=0.0):
 
 	    self.obstacle=True
 	else:
