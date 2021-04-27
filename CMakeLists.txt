@@ -31,6 +31,7 @@ add_dependencies(navig line_follower_turtlebot_generate_messages_cpp)
 
 catkin_install_python(PROGRAMS
    src/mode_decision.py
+   src/obstacle_avoidance.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
  )
 
