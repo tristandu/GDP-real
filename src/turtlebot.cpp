@@ -37,7 +37,7 @@ void turtlebot::dir_sub(line_follower_turtlebot::pos msg) {
     turtlebot::dir = msg.direction;
 }
 
-void turtlebot::mode_sub(std_msgs::Int32) {
+void turtlebot::mode_sub(std_msgs::Int32 msg) {
     turtlebot::mode = msg.data;
 }
 
