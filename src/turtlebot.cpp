@@ -23,6 +23,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 #include <geometry_msgs/Twist.h>
+#include <std_msgs/Int32.h>
 #include <vector>
 #include "ros/ros.h"
 #include "ros/console.h"
@@ -36,11 +37,20 @@ void turtlebot::dir_sub(line_follower_turtlebot::pos msg) {
     turtlebot::dir = msg.direction;
 }
 
+void turtlebot::mode_sub(std_msgs::Int32) {
+    turtlebot::mode = msg.data;
+}
+
 void turtlebot::vel_cmd(geometry_msgs::Twist &velocity,
  ros::Publisher &pub, ros::Rate &rate) {
-
+   if (turtlebot::mode != 0) {
+        turtlebot::last_dir =0;
+	pub.publish(velocity);
+        rate.sleep();
+        ROS_INFO_STREAM("Tracking disabled");
+	
     // If robot has to search
-    if (turtlebot::dir == -1) {
+   } else if (turtlebot::dir == -1) {
         turtlebot::last_dir =0;
         velocity.linear.x = 0;
         velocity.angular.z = 0.40;
