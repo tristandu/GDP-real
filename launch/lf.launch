@@ -10,6 +10,11 @@
 <node pkg="line_follower_turtlebot" name="Velocity" type="navig" cwd="node" output="screen">
 </node>
 
+
+<node pkg="line_follower_turtlebot" name="mode_decisioner" type="mode_decision.py" cwd="node" output="screen">
+</node>
+
+
 <node
 pkg = "rosbag"
 type = "record"
