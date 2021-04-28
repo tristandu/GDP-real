@@ -52,15 +52,15 @@ void turtlebot::vel_cmd(geometry_msgs::Twist &velocity,
     // If robot has to search
    } else if (turtlebot::dir == -1) {
         turtlebot::last_dir =0;
-        velocity.linear.x = 0;
-        velocity.angular.z = 0.40;
+        velocity.linear.x = -0.1;
+        velocity.angular.z = 0;
         pub.publish(velocity);
         rate.sleep();
         ROS_INFO_STREAM("Searching");
         
     } else {
 	double last_dir_save=0;
-        double max_vel=0.20;
+        double max_vel=0.24;
         double Kp=0.0025;
         double Kd=0.007;
 
