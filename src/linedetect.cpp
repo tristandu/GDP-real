@@ -59,8 +59,8 @@ double LineDetect::colorthresh(cv::Mat input) {
   auto c_x = 0.0;
   // Detect all objects within the HSV range
   cv::cvtColor(input, LineDetect::img_hsv, CV_BGR2HSV);
-  LineDetect::LowerYellow = {110, 100, 100};
-  LineDetect::UpperYellow = {130, 255, 255};
+  LineDetect::LowerYellow = {20, 100, 100};
+  LineDetect::UpperYellow = {40, 255, 255};
   cv::inRange(LineDetect::img_hsv, LowerYellow,
    UpperYellow, LineDetect::img_mask);
   img_mask(cv::Rect(0, 0, w, 0.1*h)) = 0;

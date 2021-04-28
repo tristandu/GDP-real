@@ -48,7 +48,7 @@ int main(int argc, char **argv) {
         1, &LineDetect::imageCallback, &det);
 
     ros::Publisher dirPub = n.advertise<
-    line_follower_turtlebot::pos>("direction", 1);
+    line_follower_turtlebot::pos>("/direction", 1);
         line_follower_turtlebot::pos msg;
 
     while (ros::ok()) {
