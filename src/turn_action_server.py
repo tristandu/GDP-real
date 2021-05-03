@@ -42,18 +42,18 @@ class TurnAction(object):
 
                 elif goal.turn_direction=="Left":
                     self.twist.linear.x=0
-                    self.twist.angular.z=0.1
+                    self.twist.angular.z=0.785
                     self.cmd_pub.publish(self.twist)
 
                 elif goal.turn_direction=="Right":
                     self.twist.linear.x=0
-                    self.twist.angular.z=-0.1
+                    self.twist.angular.z=-0.785
                     self.cmd_pub.publish(self.twist)
 
                 else:
                     assert goal.turn_direction == "Back"
                     self.twist.linear.x=0
-                    self.twist.angular.z=0.2
+                    self.twist.angular.z=1.57
                     self.cmd_pub.publish(self.twist)
 
             else:
