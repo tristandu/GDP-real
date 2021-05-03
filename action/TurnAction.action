@@ -1,0 +1,8 @@
+#goal definition
+string turn_direction
+---
+#feedback definition
+string feedback
+---
+#result definition
+string result

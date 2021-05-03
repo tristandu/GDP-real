@@ -4,14 +4,20 @@ project(line_follower_turtlebot)
 add_definitions(-std=c++11)
 
 ## Find catkin and any catkin packages
-find_package(catkin REQUIRED COMPONENTS cv_bridge roscpp rospy std_msgs genmsg geometry_msgs)
+find_package(catkin REQUIRED COMPONENTS cv_bridge roscpp rospy std_msgs genmsg geometry_msgs actionlib_msgs)
 find_package(OpenCV REQUIRED)
 
 ## Declare ROS messages and services
 add_message_files(FILES pos.msg)
 
+add_action_files(
+  DIRECTORY action
+  FILES TurnAction.action
+)
+
+
 ## Generate added messages and services
-generate_messages(DEPENDENCIES std_msgs)
+generate_messages(DEPENDENCIES actionlib_msgs std_msgs)
 
 catkin_package()
 
@@ -32,6 +38,8 @@ add_dependencies(navig line_follower_turtlebot_generate_messages_cpp)
 catkin_install_python(PROGRAMS
    src/mode_decision.py
    src/obstacle_avoidance.py
+   src/turn_action_server.py
+   src/turn_action_client.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
  )
 
