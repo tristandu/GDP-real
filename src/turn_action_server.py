@@ -5,8 +5,8 @@ from std_msgs.msg import Int32, String
 
 
 class TurnAction(object):
-    _feedback = line_follower_turtlebot.msg.TurnActionFeedback()
-    _result = line_follower_turtlebot.msg.TurnActionResult()
+    _feedback = line_follower_turtlebot.msg.TurnFeedback()
+    _result = line_follower_turtlebot.msg.TurnResult()
 
     def __init__(self,name):
         self.first_step_done=False      #robot has to move straight first, then turn
@@ -23,8 +23,9 @@ class TurnAction(object):
         r=rospy.Rate(10)
         success=True
         t0=rospy.get_time()
+        rospy.loginfo("Goal received")
 
-        while True
+        while True:
             if self._as.is_preempt_requested():
                     rospy.loginfo('%s: Preempted' % self._action_name)
                     self._as.set_preempted()
@@ -34,7 +35,7 @@ class TurnAction(object):
             if rospy.get_time()-t0>3.0:
                 break
 
-            elif rospy.get_time-t0>1.0:
+            elif rospy.get_time()-t0>1.0:
 
                 if goal.turn_direction=="Straight":
                     break
@@ -69,7 +70,7 @@ class TurnAction(object):
 
 
 if __name__ == '__main__':
-    rospy.init_node('turn_action_client')
+    rospy.init_node('turn_action_server')
     server = TurnAction(rospy.get_name())
     rospy.spin()
 

@@ -12,7 +12,7 @@ add_message_files(FILES pos.msg)
 
 add_action_files(
   DIRECTORY action
-  FILES TurnAction.action
+  FILES Turn.action
 )
 
 
@@ -40,6 +40,7 @@ catkin_install_python(PROGRAMS
    src/obstacle_avoidance.py
    src/turn_action_server.py
    src/turn_action_client.py
+   src/test_client.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
  )
 

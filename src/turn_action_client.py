@@ -1,8 +1,11 @@
 #!/usr/bin/env python
-import rospy, actionlib, line_follower_turtlebot.msg
+from __future__ import print_function
+import rospy 
+import actionlib
+import line_follower_turtlebot.msg
 from std_msgs.msg import Int32
 
-def TurnClient():
+class TurnClient():
 
     def __init__(self):
         self.sub_mode = rospy.Subscriber("/mode", Int32, self.cbMode)
@@ -13,12 +16,12 @@ def TurnClient():
 
     def cbMode(self, msg):
         if (msg.data==1 and self.last_msg!=1):
-            self.goal = line_follower_turtlebot.msg.TurnActionGoal(turn_direction="Right")
+            self.goal = line_follower_turtlebot.msg.TurnGoal(turn_direction="Right")
             self.client.send_goal(self.goal)
             self.client.wait_for_result()
             self.res=self.client.get_result()
             try:
-                print("Result: "+self.res)
+                print("Result: "+self.res.result)
             except:
                 print("program interrupted before completion", file=sys.stderr)
         self.last_msg=msg.data
