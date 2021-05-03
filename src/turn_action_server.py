@@ -64,6 +64,7 @@ class TurnAction(object):
             r.sleep()
 
         if success:
+            self.cmd_pub.publish(Twist())
             self._result.result="Success"
             rospy.loginfo('%s: Succeeded' % self._action_name)
             self._as.set_succeeded(self._result)
