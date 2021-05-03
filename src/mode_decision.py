@@ -26,9 +26,14 @@ class ModeDecision():
     def cbImage(self,msg):
         image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
         hsv = cv2.cvtColor(image,cv2.COLOR_BGR2HSV)
-        lower_blue = numpy.array([90,100,100])		#Hue of blue is 240 degree, we divide by 2 to normalize for OpenCV
-	upper_blue = numpy.array([150,255,255])
-        mask = cv2.inRange(hsv,lower_blue,upper_blue)
+        lower_red1 = numpy.array([0,100,100])		#Hue of blue is 240 degree, we divide by 2 to normalize for OpenCV
+	upper_red1 = numpy.array([15,255,255])
+	lower_red2 = numpy.array([165,100,100])
+	upper_red2 = numpy.array([180,255,255])
+
+        mask1 = cv2.inRange(hsv,lower_red1,upper_red1)
+	mask2 = cv2.inRange(hsv,lower_red2,upper_red2)
+	mask=mask1+mask2
 	
 
 	height, width = mask.shape[:2]
@@ -39,7 +44,7 @@ class ModeDecision():
 
 
     def cbScan(self,msg):
-	thr1=0.8
+	thr1=0.3
 	
 	if (msg.ranges[0]<thr1 and msg.ranges[0]!=0.0) or (msg.ranges[15]<thr1 and msg.ranges[15]!=0.0) or (msg.ranges[345]<thr1 and msg.ranges[345]!=0.0):
 
