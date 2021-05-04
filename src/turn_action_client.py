@@ -16,7 +16,7 @@ class TurnClient():
         self.client.wait_for_server()
         
     def cbNextTurn(self,msg):
-        self.goal=self.goal = line_follower_turtlebot.msg.TurnGoal(turn_direction=msg.data)
+        self.goal=line_follower_turtlebot.msg.TurnGoal(turn_direction=msg.data)
 
 
     def cbMode(self, msg):
