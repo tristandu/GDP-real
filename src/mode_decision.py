@@ -11,9 +11,13 @@ class ModeDecision():
         self.bridge = cv_bridge.CvBridge()
         self.sub_scan = rospy.Subscriber("/scan", LaserScan, self.cbScan)
         self.sub_image = rospy.Subscriber("/raspicam_node/image", Image, self.cbImage)
+	self.sub_action_start = rospy.Subscriber("/turn_action_server/goal", TurnGoal, self.cbGoal)
+	self.sub_action_end = ropsy.Subscriber("/turn_action_server/result", TurnResult, self.cbResult)
+	
 	self.pub_mode = rospy.Publisher("/mode", Int32, queue_size=10)
 
 	#variables that store whether there is an obstacle/node or not
+	self.action_running=False
 	self.obstacle=False
 	self.node=False
 
@@ -21,7 +25,14 @@ class ModeDecision():
         while not rospy.is_shutdown():
             self.fnFunction()
             loop_rate.sleep()
-
+		
+		
+    def cbGoal(self,msg):
+	self.action_running=True
+	
+    def cbResult(self,msg):
+	self.action_running=False
+		
     
     def cbImage(self,msg):
         image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
@@ -55,8 +66,11 @@ class ModeDecision():
     def fnFunction(self):
 	
 	mode = Int32()
+	
+	if self.action_running:
+	    mode.data=3
 
-	if self.obstacle:
+	elif self.obstacle:
 	    mode.data=2
 	
 	elif self.node:
