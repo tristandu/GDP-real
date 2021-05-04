@@ -2,6 +2,9 @@
 
 <arg name = "StartRec" default = "false" />
 
+<arg name="start" />
+<arg name="destination" />
+  
 <!-- Detection node -->
 <node pkg="line_follower_turtlebot" name="detection" type="detect" cwd="node" output="screen">
 </node>
@@ -24,6 +27,12 @@
 <node pkg="line_follower_turtlebot" name="turn_action_client" type="turn_action_client.py" cwd="node" output="screen">
 </node> 
 
+  
+<node pkg="line_follower_turtlebot" name="path_planning" type="path_planning.py" cwd="node" output="screen" required="true">
+  <arg name="$(arg start)" />
+  <arg name="$(arg destination)" />
+</node>   
+  
 
 <node
 pkg = "rosbag"
