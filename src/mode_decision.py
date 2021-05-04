@@ -2,6 +2,7 @@
 import rospy # Python library for ROS
 from sensor_msgs.msg import LaserScan,Image 
 from std_msgs.msg import Int32
+from line_follower_turtlebot.msg import TurnGoal,TurnResult
 import cv2, cv_bridge, numpy
 
 
