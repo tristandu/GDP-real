@@ -40,6 +40,7 @@ catkin_install_python(PROGRAMS
    src/obstacle_avoidance.py
    src/turn_action_server.py
    src/turn_action_client.py
+   src/paht_planning.py
    src/test_client.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
  )
