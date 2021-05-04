@@ -56,17 +56,17 @@ class PathPlanning():
     def cbTurnRes(self,msg):
         if self.turns!=[]:
             self.turns.del[0]
+            self.next_turn.data=self.turns[0]
             
     def cbMode(self,msg):
         if msg.data==1 and self.turns==[]:
             rospy.signal_shutdown("Delivery accomplished")
             
     def fnFunction(self):
-        self.next_turn.data=self.turns[0]
         self.pub_next_turn(self.next_turn)
         
         
 if __name__== '__main__':
-    rospy.init_mode("path_planning")
+    rospy.init_mode("path_planning", disable_signals=True)
     node = PathPlanning()
     rospy.spin()
