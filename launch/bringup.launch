@@ -1,6 +1,8 @@
-<include file = "$(find turtlebot3_bringup)/launch/turtlebot3_robot.launch">
-</include>
+<launch>
+<include file = "$(find turtlebot3_bringup)/launch/turtlebot3_robot.launch"/>
 
 <include file = "$(find raspicam_node)/launch/camerav2_1280x960_10fps.launch">
   <arg name="enable_raw" value="true"/>
 </include>
+
+</launch>

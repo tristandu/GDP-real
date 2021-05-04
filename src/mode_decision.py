@@ -2,7 +2,7 @@
 import rospy # Python library for ROS
 from sensor_msgs.msg import LaserScan,Image 
 from std_msgs.msg import Int32
-from line_follower_turtlebot.msg import TurnGoal,TurnResult
+from line_follower_turtlebot.msg import TurnActionGoal,TurnActionResult
 import cv2, cv_bridge, numpy
 
 
@@ -12,8 +12,8 @@ class ModeDecision():
         self.bridge = cv_bridge.CvBridge()
         self.sub_scan = rospy.Subscriber("/scan", LaserScan, self.cbScan)
         self.sub_image = rospy.Subscriber("/raspicam_node/image", Image, self.cbImage)
-	self.sub_action_start = rospy.Subscriber("/turn_action_server/goal", TurnGoal, self.cbGoal)
-	self.sub_action_end = ropsy.Subscriber("/turn_action_server/result", TurnResult, self.cbResult)
+	self.sub_action_start = rospy.Subscriber("/turn_action_server/goal", TurnActionGoal, self.cbGoal)
+	self.sub_action_end = rospy.Subscriber("/turn_action_server/result", TurnActionResult, self.cbResult)
 	
 	self.pub_mode = rospy.Publisher("/mode", Int32, queue_size=10)
 

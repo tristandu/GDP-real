@@ -29,8 +29,8 @@
 
   
 <node pkg="line_follower_turtlebot" name="path_planning" type="path_planning.py" cwd="node" output="screen" required="true">
-  <arg name="$(arg start)" />
-  <arg name="$(arg destination)" />
+  <param name="start" type="int" value="$(arg start)" />
+  <param name="destination" type="int" value="$(arg destination)" />
 </node>   
   
 
