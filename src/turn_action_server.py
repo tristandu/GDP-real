@@ -68,9 +68,15 @@ class TurnAction(object):
                     self.cmd_pub.publish(self.twist)
 
             else:
-                self.twist.linear.x=0.08
-                self.twist.angular.z=0
-                self.cmd_pub.publish(self.twist)
+                if goal.turn_direction=="END":
+                    self.twist.linear.x=0
+                    self.twist.angular.z=0
+                    self.cmd_pub.publish(self.twist)
+
+                else:
+                    self.twist.linear.x=0.08
+                    self.twist.angular.z=0
+                    self.cmd_pub.publish(self.twist)
 
             r.sleep()
 

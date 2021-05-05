@@ -24,7 +24,7 @@ class PathPlanning():
                 self.turns=["Straight","Right","Straight","Right","Left","END"]
                 
             elif self.destination==17:
-                self.turns=["Right", "Straight","Right","END"]
+                self.turns=["Right", "Straight","Right","Back","Left","Left","END"]
                 
             else:
                 rospy.signal_shutdown("Wrong destination")
@@ -60,7 +60,7 @@ class PathPlanning():
             self.next_turn=self.turns[0]
             
     def cbMode(self,msg):
-        if msg.data==1 and self.turns==["END"]:
+        if msg.data==3 and self.turns==["END"]:
             rospy.signal_shutdown("Delivery accomplished")
             
     def fnFunction(self):
