@@ -15,32 +15,32 @@ class PathPlanning():
         
         if self.start==1:
             if self.destination==14:
-                self.turns=["Left", "Left"]
+                self.turns=["Left", "Left","END"]
                 
             elif self.destination==15:
-                self.turns=["Straight", "Right", "Straight", "Straight"]
+                self.turns=["Straight", "Right", "Straight", "Straight","END"]
                 
             elif self.destination==16:
-                self.turns=["Straight","Right","Straight","Right","Left"]
+                self.turns=["Straight","Right","Straight","Right","Left","END"]
                 
             elif self.destination==17:
-                self.turns=["Right", "Straight","Right"]
+                self.turns=["Right", "Straight","Right","END"]
                 
             else:
                 rospy.signal_shutdown("Wrong destination")
                 
         elif self.start==2:
             if self.destination==14:
-                self.turns=["Left","Right","Straight","Straight", "Straight"]
+                self.turns=["Left","Right","Straight","Straight", "Straight","END"]
                 
             elif self.destination==15:
-                self.turns=["Straight", "Straight", "Right","Straight"]
+                self.turns=["Straight", "Straight", "Right","Straight","END"]
                 
             elif self.destination==16:
-                self.turns=["Straight","Right","Left","Straight","Back","Right","Left","Straight","Left","Straight"]
+                self.turns=["Straight","Right","Left","Straight","Back","Right","Left","Straight","Left","Straight","END"]
                 
             elif self.destination==17:
-                self.turns=["Straight","Right","Straight", "Straight"]
+                self.turns=["Straight","Right","Straight", "Straight","END"]
                 
             else:
                 rospy.signal_shutdown("Wrong destination")
