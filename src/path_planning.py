@@ -37,10 +37,10 @@ class PathPlanning():
                 self.turns=["Straight", "Straight", "Right","Straight"]
                 
             elif self.destination==16:
-                self.turns=["Straight","Right","Left","Straight"]
+                self.turns=["Straight","Right","Left","Straight","Back","Right","Left","Straight","Left","Straight"]
                 
             elif self.destination==17:
-                self.turns=["Right","Right"]
+                self.turns=["Straight","Right","Straight", "Straight"]
                 
             else:
                 rospy.signal_shutdown("Wrong destination")
