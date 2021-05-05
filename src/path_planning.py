@@ -48,7 +48,7 @@ class PathPlanning():
             rospy.signal_shutdown("Wrong starting node")
         
         self.next_turn=self.turns[0]
-        loop_rate=rospy.Rate(5)
+        loop_rate=rospy.Rate(20)
         while not rospy.is_shutdown():
             self.fnFunction()
             loop_rate.sleep()
