@@ -60,7 +60,7 @@ class PathPlanning():
             self.next_turn=self.turns[0]
             
     def cbMode(self,msg):
-        if msg.data==1 and self.turns==[]:
+        if msg.data==1 and self.turns==["END"]:
             rospy.signal_shutdown("Delivery accomplished")
             
     def fnFunction(self):
