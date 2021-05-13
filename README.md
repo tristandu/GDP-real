@@ -2,8 +2,7 @@
 
 ## Overview
 This project uses ROS to demonstrate a lane graph navigating Turtlebot. This project is a proof of concept of a tool-delivery robotic solution for the "Factory of the future". The robot performs lane tracking and obstacle avoidance and takes turns on a physical graph depending on its start position and destination.
-
-## Procedure
+This project is an extension of Sudrag's line_follower_turtlebot, github available at https://github.com/sudrag/line_follower_turtlebot
 
 
 ## Dependencies
@@ -16,7 +15,7 @@ This project uses ROS to demonstrate a lane graph navigating Turtlebot. This pro
 * OpenCV
 
 ## To build
-To build the project run the following steps in a terminal:
+To build the project run the following steps in a terminal (connected to the Raspberry Pi through SSH):
 * Creating a catkin workspace:
 ```
 mkdir catkin_ws
@@ -33,6 +32,7 @@ catkin_make
 ```
 
 ## To run
+(requires the actual lane graph as well as the robot itself)
 ```
 cd ~/catkin_ws
 source devel/setup.bash
