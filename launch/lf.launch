@@ -1,7 +1,5 @@
 <launch>
 
-<arg name = "StartRec" default = "false" />
-
 <arg name="start" />
 <arg name="destination" />
   
@@ -33,15 +31,4 @@
   <param name="destination" type="int" value="$(arg destination)" />
 </node>   
   
-
-<node
-pkg = "rosbag"
-type = "record"
-name = "rosbag_record_all"
-respawn = "true"
-output = "screen"
-args = "-a -O BagFile -x /camera/(.*) "
-if = "$(arg StartRec)"
-/>
-
 </launch>
